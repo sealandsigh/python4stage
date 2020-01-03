@@ -14,3 +14,21 @@ print(a)
 
 a.pop(0)
 print(a)
+
+print(a.count('nidaye'))
+
+a.extend(['nidaye1','nidaye2'])
+print(a)
+a.append(['nidaye1','nidaye2'])
+print(a)
+
+person1 = a
+person2 = a.copy()
+
+print(person1 is a)
+print(person2 is a)
+
+a.clear()
+
+print(person1)
+print(person2)
