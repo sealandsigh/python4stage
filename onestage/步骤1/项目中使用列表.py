@@ -16,3 +16,4 @@ while True:
     emp_list.append(info_list)
 
 print(emp_list)
+print(emp_list)
