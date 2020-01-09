@@ -16,4 +16,3 @@ def health_check(name,age,*,height,weight,hr,hbp,lbp,glu):
 
 param = {"name":'zhujiajun',"age":23,"height":23,"weight":23,"hr":23,"hbp":23,"lbp":23,"glu":23}
 health_check(**param)
-health_check(**param)
