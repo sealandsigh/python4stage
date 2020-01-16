@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # __author__="jiajun.zhu"
 # DATE:2020/1/15
+import random
 from datetime import datetime
 
 
@@ -17,4 +18,5 @@ def gen_trans_id(date=None):
 
     # 怎样保证字符串唯一
     # 日期+时间+毫秒+随机数（6位随机数)）
-    return date.strftime("%y%m%d%H%M%S%f")
+    return "{0}{1}".format(date.strftime("%Y%m%d%H%M%S%f"),random.randint(100000,999999))
+    #return date.strftime("%Y%m%d%H%M%S%f") + str(random.randint(100000,999999))
