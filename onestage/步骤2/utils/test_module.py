@@ -2,6 +2,7 @@
 # __author__="jiajun.zhu"
 # DATE:2020/1/15
 from datetime import datetime
+from work.tools import get_file_type
 
 from trans.tools import gen_trans_id
 
@@ -13,5 +14,10 @@ def test_trans_tool():
     id2 = gen_trans_id(date)
     print(id2)
 
+def test_work_tool():
+    """测试work模块"""
+    get_file_type()
+
 if __name__ == "__main__":
     test_trans_tool()
+    test_work_tool()
