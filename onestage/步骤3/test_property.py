@@ -12,7 +12,20 @@ class PetCat(object):
         :param age: 猫的年龄
         """
         self.name = name
-        self.age = age
+        self.__age = age
+
+    @property
+    def age(self):
+        return self.__age
+
+    @age.setter
+    def age(self,value):
+        if not isinstance(value,int):
+            print("必须是整数")
+            return 0
+        if value < 0 or value > 100:
+            print("请输入正确的数字")
+            return 0
 
     # 描述符
     @property
@@ -26,6 +39,9 @@ class PetCat(object):
 
 if __name__ == "__main__":
     cat_balck = PetCat("小黑",2)
+    # rest = cat_balck.show_info
+    # print(rest)
+    # print(cat_balck)
+    cat_balck.age = -4
     rest = cat_balck.show_info
     print(rest)
-    # print(cat_balck)
