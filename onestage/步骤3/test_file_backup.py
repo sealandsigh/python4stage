@@ -25,8 +25,8 @@ class FileBackup(object):
         """
         ls = os.listdir(self.src)
         print(ls)
-        # for l in ls:
-        #     self.backup_file(l)
+        for l in ls:
+            self.backup_file(l)
 
     def backup_file(self,file_name):
         """
@@ -41,10 +41,18 @@ class FileBackup(object):
             print("指定的目录不存在，创建完成")
 
         # 2 判断文件是否为要备份的
-        # 首先要判断是否为文件夹，然后可以借助于文件的后缀进行判断
 
+        # 拼接完整路径
+        full_path = os.path.join(self.src,file_name)
+        # 首先要判断是否为文件夹，然后可以借助于文件的后缀进行判断
+        if os.path.isfile(full_path) and os.path.splitext(full_path)[-1].lower() == ".txt":
+            print(full_path)
         # 3 读取文件内容
+            with open(full_path,"r",encoding="utf-8") as f_src:
+                rest = f_src
         # 4 读取的内容写入到新的文件当中
+        else:
+            print("文件类型不符合备份系统，跳过")
 
 
 if __name__ == "__main__":
