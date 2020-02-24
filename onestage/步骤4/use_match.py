@@ -11,3 +11,6 @@ print(dir(pattern))
 # 通过match来进行匹配
 rest = pattern.match("Hello world!")
 print(rest)
+
+all_rest = re.match(r"hello","Hello world!",re.I)
+print(all_rest)
