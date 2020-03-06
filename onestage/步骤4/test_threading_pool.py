@@ -1,0 +1,35 @@
+# -*- coding: utf-8 -*-
+# __author__="jiajun.zhu"
+# DATE:2020/3/5
+import time,threading
+
+
+def run(n):
+    """线程要做的事情"""
+    time.sleep(2)
+    print(threading.current_thread().name,n)
+
+
+def main():
+    """使用传统的方法来做任务"""
+    t1 = time.time()
+    for n in range(100):
+        run(n)
+    print(time.time() - t1)
+
+def main_use_thread():
+    """ 使用线程优化任务 """
+    # 资源有限，跑10个线程
+    ls = []
+    for count in range(10):
+        for i in range(10):
+            t = threading.Thread(target=run(), args=(i,))
+            ls.append(t)
+            t.start()
+
+        for l in ls:
+            l.join()
+
+
+if __name__ == "__main__":
+    main()
