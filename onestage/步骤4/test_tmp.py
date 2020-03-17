@@ -18,4 +18,3 @@ if __name__ == "__main__":
     print(rest)
     print(zip(l[:-1], l[1:]))
     print(range(0,10))
-
