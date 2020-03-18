@@ -33,8 +33,33 @@ try:
     avg=temp[0] # 公司的平均底薪
     sql = "SELECT deptno FROM t_emp GROUP BY deptno HAVING AVG(sal)>=%s"
     cursor.execute(sql,[avg])
-    for one in cursor:
-        print(one[0])
+    # for one in cursor:
+    #     print(one[0])
+    temp = cursor.fetchall()
+    print(temp)
+    sql = "INSERT INTO t_emp_new SELECT * FROM t_emp WHERE deptno IN ("
+    for index in range(len(temp)):
+        sql += str(temp[index][0])
+        if index < len(temp) - 1:
+            sql += ","
+    sql += ")"
+    cursor.execute(sql)
+    sql = "DELETE FROM t_emp WHERE deptno IN ("
+    for index in range(len(temp)):
+        one = temp[index][0]
+        if index < len(temp) - 1:
+            sql += str(one) + ","
+        else:
+            sql += str(one)
+    sql += ")"
+    cursor.execute(sql)
+    sql = "SELECT deptno FROM t_dept WHERE dname=%s"
+    cursor.execute(sql,["SALES"])
+    deptno = cursor.fetchone()[0]
+    sql = "UPDATE t_emp_new SET deptno=%s "
+    cursor.execute(sql,[deptno])
     con.commit()
 except Exception as e:
+    if "con" in dir():
+        con.rollback()
     print(e)
