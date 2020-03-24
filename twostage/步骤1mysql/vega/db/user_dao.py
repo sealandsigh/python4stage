@@ -10,8 +10,8 @@ class UserDao(object):
         try:
             con = pool.get_connection()
             cursor = con.cursor()
-            sql = "SELECT count(*) FROM t_user WHERE username=%s AND" \
-            "AES_DECRYPT(UNHEX(password),'HelloWorld')=%s"
+            sql = "SELECT COUNT(*) FROM t_user WHERE username=%s AND " \
+                  "AES_DECRYPT(UNHEX(password),'HelloWorld')=%s"
             cursor.execute(sql,(username,password))
             count = cursor.fetchone()[0]
             return True if count==1 else False
