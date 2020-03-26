@@ -6,12 +6,14 @@ from colorama import Fore,Style
 from getpass import getpass
 from service.user_service import UserService
 from service.news_service import NewsService
+from service.role_service import RoleService
 import os
 import sys
 import time
 
 __user_service = UserService()
 __news_service = NewsService()
+__role_service = RoleService()
 
 while True:
     # os.system("clear")
@@ -107,6 +109,37 @@ while True:
                                 break
                             elif opt == "exit":
                                 sys.exit(0)
+                    elif opt=="2":
+                        while True:
+                            os.system("clear")
+                            print(Fore.LIGHTGREEN_EX, "\n\t1.添加用户")
+                            print(Fore.LIGHTGREEN_EX, "\n\t2.修改用户")
+                            print(Fore.LIGHTGREEN_EX, "\n\t3.删除用户")
+                            print(Fore.LIGHTRED_EX, "\n\tback.返回上一层")
+                            print(Style.RESET_ALL)
+                            opt = input("\n\t输入操作编号:")
+                            if opt=="back":
+                                break
+                            elif opt=="1":
+                                os.system("clear")
+                                username=input("\n\t用户名:")
+                                password = getpass("\n\t密码:")
+                                repassword=getpass("\n\t重复密码:")
+                                if password!=repassword:
+                                    print("\n\t两次密码不一致(3秒自动返回)")
+                                    time.sleep(3)
+                                    continue
+                                email=input("\n\t邮箱:")
+                                result=__role_service.search_list()
+                                for index in range(len(result)):
+                                    one=result[index]
+                                    print(Fore.LIGHTBLUE_EX,"\n\t%d.%s"%(index+1,one[1]))
+                                print(Style.RESET_ALL)
+                                opt=input("\n\t角色编号:")
+                                role_id=result[int(opt)-1][0]
+                                __user_service.insert(username,password,email,role_id)
+                                print("\n\t保存成功(3秒自动返回)")
+                                time.sleep(3)
         else:
             print("\n\t 登录失败")
             time.sleep(3)

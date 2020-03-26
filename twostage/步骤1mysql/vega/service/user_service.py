@@ -16,3 +16,7 @@ class UserService(object):
     def search_user_role(self,username):
         role = self.__user_dao.search_user_role(username)
         return role
+
+    # 添加记录
+    def insert(self, username, password, email, role_id):
+        self.__user_dao.insert(username, password, email, role_id)
