@@ -54,3 +54,36 @@ class UserDao(object):
             if "con" in dir():
                 con.close()
 
+    #查询用户总页数
+    def search_count_page(self):
+        try:
+            con=pool.get_connection()
+            cursor=con.cursor()
+            sql="SELECT CEIL(COUNT(*)/10) FROM t_user"
+            cursor.execute(sql)
+            count_page=cursor.fetchone()[0]
+            return count_page
+        except Exception as e:
+            print(e)
+        finally:
+            if "con" in dir():
+                con.close()
+
+    #查询用户分页记录
+    def search_list(self,page):
+        try:
+            con=pool.get_connection()
+            cursor=con.cursor()
+            sql="SELECT u.id,u.username,r.role " \
+                "FROM t_user u JOIN t_role r " \
+                "ON u.role_id=r.id " \
+                "ORDER BY u.id " \
+                "LIMIT %s,%s"
+            cursor.execute(sql,((page-1)*10,10))
+            result=cursor.fetchall()
+            return result
+        except Exception as e:
+            print(e)
+        finally:
+            if "con" in dir():
+                con.close()

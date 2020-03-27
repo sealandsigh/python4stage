@@ -20,3 +20,13 @@ class UserService(object):
     # 添加记录
     def insert(self, username, password, email, role_id):
         self.__user_dao.insert(username, password, email, role_id)
+
+    # 查询用户总页数
+    def search_count_page(self):
+        count_page = self.__user_dao.search_count_page()
+        return count_page
+
+    # 查询用户分页记录
+    def search_list(self, page):
+        result = self.__user_dao.search_list(page)
+        return result

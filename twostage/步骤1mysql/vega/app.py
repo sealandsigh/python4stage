@@ -33,7 +33,7 @@ while True:
             # 查询角色
             role = __user_service.search_user_role(username)
             while True:
-                os.system("cls")
+                os.system("clear")
                 if role == "新闻编辑":
                     print('test')
                 elif role == "管理员":
