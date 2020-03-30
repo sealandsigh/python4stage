@@ -140,6 +140,90 @@ while True:
                                 __user_service.insert(username,password,email,role_id)
                                 print("\n\t保存成功(3秒自动返回)")
                                 time.sleep(3)
+                            elif opt == "2":
+                                page = 1
+                                while True:
+                                    os.system("cls")
+                                    count_page = __user_service.search_count_page()
+                                    result = __user_service.search_list(page)
+                                    for index in range(len(result)):
+                                        one = result[index]
+                                        print(Fore.LIGHTBLUE_EX,
+                                              "\n\t%d\t%s\t%s" % (index + 1, one[1], one[2]))
+                                    print(Fore.LIGHTBLUE_EX, "\n\t-------------------")
+                                    print(Fore.LIGHTBLUE_EX, "\n\t%d/%d" % (page, count_page))
+                                    print(Fore.LIGHTBLUE_EX, "\n\t-------------------")
+                                    print(Fore.LIGHTRED_EX, "\n\tback.返回上一层")
+                                    print(Fore.LIGHTRED_EX, "\n\tprev.上一页")
+                                    print(Fore.LIGHTRED_EX, "\n\tnext.下一页")
+                                    print(Style.RESET_ALL)
+                                    opt = input("\n\t输入操作编号:")
+                                    if opt == "back":
+                                        break
+                                    elif opt == "prev" and page > 1:
+                                        page -= 1
+                                    elif opt == "next" and page < count_page:
+                                        page += 1
+                                    elif int(opt) >= 1 and int(opt) <= 10:
+                                        os.system("cls")
+                                        user_id = result[int(opt) - 1][0]
+                                        username = input("\n\t新用户名:")
+                                        password = getpass("\n\t新密码:")
+                                        repassword = getpass("\n\t再次输入密码:")
+                                        if password != repassword:
+                                            print(Fore.LIGHTRED_EX, "\n\t两次密码不一致(3秒自动返回)")
+                                            print(Style.RESET_ALL)
+                                            time.sleep(3)
+                                            break
+                                        email = input("\n\t新邮箱:")
+                                        result = __role_service.search_list()
+                                        for index in range(len(result)):
+                                            one = result[index]
+                                            print(Fore.LIGHTBLUE_EX, "\n\t%d.%s" % (index + 1, one[1]))
+                                        print(Style.RESET_ALL)
+                                        opt = input("\n\t角色编号:")
+                                        role_id = result[int(opt) - 1][0]
+                                        opt = input("\n\t是否保存(Y/N)")
+                                        if opt == "Y" or opt == "y":
+                                            __user_service.update(user_id, username, password, email, role_id)
+                                            print("\n\t保存成功(3秒自动返回)")
+                                            time.sleep(3)
+                            elif opt == "3":
+                                page = 1
+                                while True:
+                                    os.system("cls")
+                                    count_page = __user_service.search_count_page()
+                                    result = __user_service.search_list(page)
+                                    for index in range(len(result)):
+                                        one = result[index]
+                                        print(Fore.LIGHTBLUE_EX,
+                                              "\n\t%d\t%s\t%s" % (index + 1, one[1], one[2]))
+                                    print(Fore.LIGHTBLUE_EX, "\n\t-------------------")
+                                    print(Fore.LIGHTBLUE_EX, "\n\t%d/%d" % (page, count_page))
+                                    print(Fore.LIGHTBLUE_EX, "\n\t-------------------")
+                                    print(Fore.LIGHTRED_EX, "\n\tback.返回上一层")
+                                    print(Fore.LIGHTRED_EX, "\n\tprev.上一页")
+                                    print(Fore.LIGHTRED_EX, "\n\tnext.下一页")
+                                    print(Style.RESET_ALL)
+                                    opt = input("\n\t输入操作编号:")
+                                    if opt == "back":
+                                        break
+                                    elif opt == "prev" and page > 1:
+                                        page -= 1
+                                    elif opt == "next" and page < count_page:
+                                        page += 1
+                                    elif int(opt) >= 1 and int(opt) <= 10:
+                                        os.system("cls")
+                                        user_id = result[int(opt) - 1][0]
+                                        __user_service.delete_by_id(user_id)
+                                        print("\n\t删除成功(3秒自动返回)")
+                                        time.sleep(3)
+
+                    if opt=='back':
+                        break;
+                    elif opt=='exit':
+                        sys.exit(0)
+
         else:
             print("\n\t 登录失败")
             time.sleep(3)

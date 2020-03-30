@@ -30,3 +30,11 @@ class UserService(object):
     def search_list(self, page):
         result = self.__user_dao.search_list(page)
         return result
+
+    # 修改用户信息
+    def update(self, id, username, password, email, role_id):
+        self.__user_dao.update(id, username, password, email, role_id)
+
+    # 删除用户
+    def delete_by_id(self, id):
+        self.__user_dao.delete_by_id(id)

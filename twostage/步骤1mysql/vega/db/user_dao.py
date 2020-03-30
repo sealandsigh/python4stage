@@ -87,3 +87,40 @@ class UserDao(object):
         finally:
             if "con" in dir():
                 con.close()
+
+    #修改用户信息
+    def update(self,id,username,password,email,role_id):
+        try:
+            con = pool.get_connection()
+            con.start_transaction()
+            cursor=con.cursor()
+            sql="UPDATE t_user SET username=%s," \
+                "password=HEX(AES_ENCRYPT(%s,'HelloWorld'))," \
+                "email=%s,role_id=%s " \
+                "WHERE id=%s"
+            cursor.execute(sql,(username,password,email,role_id,id))
+            con.commit()
+        except Exception as e:
+            if "con" in dir():
+                con.rollback()
+            print(e)
+        finally:
+            if "con" in dir():
+                con.close()
+
+    #删除用户
+    def delete_by_id(self,id):
+        try:
+            con = pool.get_connection()
+            con.start_transaction()
+            cursor=con.cursor()
+            sql="DELETE FROM t_user WHERE id=%s"
+            cursor.execute(sql,[id])
+            con.commit()
+        except Exception as e:
+            if "con" in dir():
+                con.rollback()
+            print(e)
+        finally:
+            if "con" in dir():
+                con.close()
