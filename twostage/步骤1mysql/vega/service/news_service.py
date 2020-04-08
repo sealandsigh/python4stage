@@ -4,10 +4,12 @@
 
 from db.news_dao import NewsDao
 from db.redis_news_dao import RedisNewsDao
+from db.mongo_news_dao import MonegoNewsDao
 
 class NewsService(object):
     __news_dao=NewsDao()
     __redis_news_dao = RedisNewsDao()
+    __mongo_news_dao = MonegoNewsDao()
 
     def search_unreview_list(self,page):
         result = self.__news_dao.search_unreview_list(page)
@@ -37,7 +39,9 @@ class NewsService(object):
         self.__news_dao.delete_by_id(id)
 
     # 添加新闻
-    def insert(self, title, editor_id, type_id, content_id, is_top):
+    def insert(self, title, editor_id, type_id, content, is_top):
+        self.__mongo_news_dao.insert(title,content)
+        content_id = self.__mongo_news_dao.search_id(title)
         self.__news_dao.insert(title,editor_id,type_id,content_id,is_top)
 
     #查找用户缓存的记录

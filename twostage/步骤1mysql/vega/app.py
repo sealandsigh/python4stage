@@ -55,11 +55,14 @@ while True:
                         opt = input("\n\t类型编号:")
                         type_id = result[int(opt) - 1][0]
                         #TODO 新闻正文内容
-                        content_id=100
+                        path = input("\n\t输入文件路径:")
+                        file = open(path,"r")
+                        content = file.read()
+                        file.close()
                         is_top=input("\n\t置顶级别(0-5):")
                         is_commite=input("\n\t是否提交(Y/N):")
                         if is_commite=="Y" or is_commite=="y":
-                            __news_service.insert(title,userid,type_id,content_id,is_top)
+                            __news_service.insert(title,userid,type_id,content,is_top)
                             print("\n\t保存成功(3秒自动返回)")
                             time.sleep(3)
                     elif opt=="2":
