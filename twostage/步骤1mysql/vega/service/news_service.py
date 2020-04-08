@@ -4,12 +4,12 @@
 
 from db.news_dao import NewsDao
 from db.redis_news_dao import RedisNewsDao
-from db.mongo_news_dao import MonegoNewsDao
+from db.mongo_news_dao import MongoNewsDao
 
 class NewsService(object):
     __news_dao=NewsDao()
     __redis_news_dao = RedisNewsDao()
-    __mongo_news_dao = MonegoNewsDao()
+    __mongo_news_dao = MongoNewsDao()
 
     def search_unreview_list(self,page):
         result = self.__news_dao.search_unreview_list(page)
@@ -63,6 +63,12 @@ class NewsService(object):
         return result
 
     #更改新闻
-    def update(self,id,title,type_id,content_id,is_top):
+    def update(self,id,title,type_id,content,is_top):
+        content_id = self.__news_dao.search_content_id(id)
+        self.__mongo_news_dao.update(content_id,title,content)
         self.__news_dao.update(id,title,type_id,content_id,is_top)
         self.delete_cache(id)
+
+    def search_content_by_id(self,id):
+        content = self.__mongo_news_dao.search_content_by_id(id)
+        return content
