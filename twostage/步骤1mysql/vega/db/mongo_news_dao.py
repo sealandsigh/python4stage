@@ -34,3 +34,9 @@ class MongoNewsDao(object):
             return news["content"]
         except Exception as e:
             print(e)
+
+    def delete_by_id(self,id):
+        try:
+            client.vega.news.delete_one({"_id":ObjectId(id)})
+        except Exception as e:
+            print(e)
