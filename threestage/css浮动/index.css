@@ -1,9 +1,12 @@
 #div1{
-    background-color: yellow;
-    width: 150px;
-    height: 150px;
-    top: 150px;
-    left: 150px;
-    position: absolute;
-    overflow: scroll;
+    background-color: red;
+    float: left;
+}
+
+img{
+    vertical-align: bottom;
+}
+p{
+    text-align: justify;
+    line-height: 2em;
 }
