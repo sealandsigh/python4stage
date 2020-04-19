@@ -1,15 +1,17 @@
-var n = 9;
-function fun1() {
-    var n1 = 5;//局部变量
-    n = 12;//使用全局变量n
+var myscore = 100;
+var str;
+var n = parseInt(myscore/10);
+switch (n){
+    case 10:
+        str = "youxiu";
+        break;
+    case 9:
+        str = "youxiu";
+        break;
+    case 8:
+    case 7:
+        str = "lianghao";
+    default :
+        str = "jige"
 }
-function fun2() {
-    n=n-1;
-}
-function fun3() {
-    console.log(n);
-    console.log(n1);
-}
-fun1()
-fun2()
-fun3()
+console.log(str)
