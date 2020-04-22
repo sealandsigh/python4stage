@@ -10,9 +10,11 @@ function init() {
             }else {
                 //alert("feishuzi")
                 var btn_num=this.value;
+                var btn_num1=num.value;
                 switch (btn_num){
                     case "+":
-                        alert("1111");
+                        btn_num1=parseInt(num.value);
+                        num.value=0;
                         break;
                     case "-":
                         alert("2222");
@@ -25,6 +27,9 @@ function init() {
                         break;
                     case ".":
                         alert("5555");
+                        break;
+                    case "=":
+                        num.value=btn_num1+parseInt(num.value);
                         break;
                 }
             }

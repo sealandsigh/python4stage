@@ -1,0 +1,75 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+.header{
+    margin: 25px auto;
+    width: 1200px;
+}
+.header .menu ul{
+    display: none;
+    list-style: none;
+    position: absolute;
+    width: 80px;
+    opacity: 0.5;
+    background-color: white;
+}
+.header .logo{
+    float: left;
+    position: relative;
+}
+.header .menu{
+    float: left;
+    position: relative;
+    margin-top: 12px;
+    margin-left: 16px;
+}
+.header .menu ul li{
+    margin-top: 20px;
+    text-align: center;
+}
+.header .menu .menu_title{
+    border-bottom: 1px solid black;
+    padding-bottom: 20px;
+    width: 80px;
+    text-align: center;
+}
+a{
+    text-decoration: none;
+}
+/* 菜单显示折叠*/
+/*
+.header .menu:hover ul{
+    display: block;
+}
+*/
+.header .auth{
+    float: right;
+}
+.header .auth ul li{
+    float: left;
+    margin-right: 70px;
+    margin-top: 15px;
+    list-style: none;
+}
+
+
+.content{
+    width: 1200px;
+    margin: 25px auto;
+}
+.content .banner .banner-img{
+    margin-top: 20px;
+}
+
+.content .img-content ul{
+    width: 1280px;
+}
+
+.content .img-content ul li{
+    width: 360px;
+    float: left;
+    margin: 0px 60px 60px 0px;
+    list-style: none;
+}
