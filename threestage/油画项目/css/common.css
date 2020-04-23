@@ -73,3 +73,24 @@ a{
     margin: 0px 60px 60px 0px;
     list-style: none;
 }
+.img-content .info .img-btn{
+    width: 300px;
+}
+
+.img-content .info .img-btn .btn{
+    width: 60px;
+    height: 30px;
+    background-color: red;
+    text-align: center;
+    border-radius: 5px;
+    float: right;
+}
+.img-content .info .img-btn .btn img{
+    width: 25px;
+    height: 20px;
+    margin-top: 5px;
+
+}
+.img-content .info .img-btn .price{
+    float: left;
+}
